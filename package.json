@@ -1,0 +1,27 @@
+{
+  "name": "wp-manifest",
+  "version": "1.0.0",
+  "description": "Testing the manifest lifecycle algorithm for the WP draft",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "WP",
+    "W3C"
+  ],
+  "author": {
+    "name": "Ivan Herman",
+    "email": "ivan@w3.org",
+    "url": "https://www.w3.org/People/Ivan/"
+  },
+  "license": "W3C-20150513",
+  "bin": "./main.js",
+  "dependencies": {
+    "jsdom": "^11.6.2",
+    "node-fetch": "^2.1.1",
+    "underscore": "^1.8.3",
+    "url": "^0.11.0",
+    "valid-url": "^1.0.9"
+  }
+}
