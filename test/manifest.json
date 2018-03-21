@@ -1,0 +1,9 @@
+{
+    "author" : "Ivan Herman",
+    "resources" : [{
+        "href": "nav.html",
+        "rel":  ["contents"]
+    },{
+        "href": "http://www.example.org/chapter1.html"
+    }]
+}
