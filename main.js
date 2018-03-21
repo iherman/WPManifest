@@ -51,7 +51,8 @@ async function process_manifest(text, manifest_url, document_url) {
 
     // See if the json was an object or an array
     if(_.isArray(json)) {
-        console.warn(`Manifest at ${manifest_url} is an array and not an object`)
+        console.warn(`Manifest at ${manifest_url} is an array and not an object`);
+        return {};
     }
 
     // This is a fake entry right now. At some point it may include further processing
