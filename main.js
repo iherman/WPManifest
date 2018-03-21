@@ -58,7 +58,7 @@ async function process_manifest(text, manifest_url, document_url) {
     // on the manifest, possibly checks as well. Not yet part of the spec;
     let manifest = convert(json, manifest_url);
     // Get the default reading order
-    manifest.reading_order  = await nav.process_default_reading_order(manifest, manifest_url)
+    manifest.reading_order  = await nav.process_default_reading_order(manifest)
 
     // That is it
     return manifest;
@@ -76,20 +76,22 @@ async function process_manifest(text, manifest_url, document_url) {
  function convert(json, manifest_url) {
     // the strange idiom for deep cloning of an object...
     let manifest = JSON.parse(JSON.stringify(json));
-
     if(manifest.resources) {
-        let res = manifest.resources.map((obj) => {
+        manifest.resources.forEach((obj) => {
             obj.href = url.resolve(manifest_url, obj.href);
-            return obj;
         })
-        manifest.resources = res;
     }
-
-
+    if(manifest.reading_order) {
+        manifest.reading_order.forEach((obj) => {
+            obj.href = url.resolve(manifest_url, obj.href);
+        })
+    }
     return manifest
  }
 
+//---------------------------------------------------------------------------------------------------------------
 
+// Set this to your local URL if you want to test locally...
 async function main() {
     let manifest = await obtain_manifest("http://localhost:8001/LocalData/github/WPManifest/test/entry.html");
     console.log(JSON.stringify(manifest,null,2));
