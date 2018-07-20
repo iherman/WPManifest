@@ -4,7 +4,9 @@
   "description": "Testing the manifest lifecycle algorithm for the WP draft",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-report": "eslint main.js lib/",
+    "lint-fix": "eslint --fix main.js lib/"
   },
   "keywords": [
     "WP",
@@ -19,10 +21,16 @@
   "bin": "./main.js",
   "dependencies": {
     "content-type": "^1.0.4",
-    "jsdom": "^11.6.2",
-    "node-fetch": "^2.1.1",
-    "underscore": "^1.8.3",
+    "jsdom": "^11.11.0",
+    "node-fetch": "^2.1.2",
+    "underscore": "^1.9.1",
     "url": "^0.11.0",
     "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "ajv": "^6.5.2",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
   }
 }
