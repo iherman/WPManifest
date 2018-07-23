@@ -3,6 +3,8 @@ rules: # see https://eslint.org/docs/rules/
     max-len:
         - warn
         - code: 120
+    no-extra-semi:
+        - warn
     indent:
         - error
         - 4
@@ -25,7 +27,7 @@ rules: # see https://eslint.org/docs/rules/
     comma-dangle: [error, never]
     arrow-parens: [error, always]
     no-plusplus:
-        - error
+        - warn
         - allowForLoopAfterthoughts: true
     no-param-reassign:
         - error
