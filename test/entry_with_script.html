@@ -1,18 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head lang="fr">
+<head>
     <title>Na mi van</title>
     <link rel="publication" href="#manifest" />
-    <script type="application/ld+json" id="manifest" lang="fr" dir="rtl">
-        {
-            "author" : "Ivan Herman Jr.",
-            "resources" : [{
-                "href": "nav.html",
-                "rel":  ["contents"]
-            },{
-                "href": "http://www.example.org/chapter1.html"
-            }]
-        }
+    <script type="application/ld+json" id="manifest">
+    {
+        "@context"              : ["https://schema.org", "https://www.w3.org/ns/wp-context"],
+        "@type"                 : "CreativeWork",
+        "@id"                   : "http://www.w3.org/TR/tabular-data-model/",
+        "url"                   : "http://www.w3.org/TR/2015/REC-tabular-data-model-20151217/",
+        "copyrightYear"         : "2015",
+        "copyrightHolder"       : "World Wide Web Consortium",
+        "creator"               : [
+            {
+                "@type"         : "Person",
+                "name"          : "Jeni Tennison"
+            },
+            {
+                "@type"         : "Person",
+                "name"          : "Gregg Kellogg"
+            },
+            {
+                "@type"         : "Person",
+                "name"          : "Ivan Herman"
+            }
+        ],
+        "datePublished"         : "2015-12-17",
+        "resources"             : [
+            "datatypes.html",
+            "datatypes.svg",
+            "datatypes.png",
+            "diff.html",
+            "test-utf8.csv",
+            "test-utf8-bom.csv",
+            "test-utf16.csv",
+            "test-utf16-bom.csv",
+            "test.xls",
+            "test.xlsx"
+        ]
+    }
     </script>
 </head>
 <body>

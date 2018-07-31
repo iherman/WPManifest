@@ -2,13 +2,10 @@
 
 'use strict';
 
-const url                         = require('url');
-const _                           = require('underscore');
-const path                        = require('path');
-
-const { fetch_html, fetch_json }  = require('./lib/io');
-const { obtain_manifest }         = require('./lib/top')
-
+const url                                         = require('url');
+const _                                           = require('underscore');
+const path                                        = require('path');
+const { check_url, fetch_html, obtain_manifest }  = require('./lib/io');
 
 /* ------------------------------------------------------------------------------ */
 //                    Local helper to turn local file names into URL-s...
@@ -85,9 +82,9 @@ async function main() {
     let final_url = "";
     try {
         final_url = getURL(process.argv[1], process.argv[2]);
-        const top_level = await fetch_html(final_url);
-        const manifest = await obtain_manifest(top_level);
-        console.log(JSON.stringify(manifest, null, 4));
+        const top_level       = await fetch_html(final_url);
+        const manifestObject  = await obtain_manifest(top_level);
+        console.log(JSON.stringify(manifestObject, null, 4));
     } catch (err) {
         console.warn(`Error occured when handling ${final_url}: ${err}`);
     }

@@ -4,7 +4,7 @@
   "description": "Testing the manifest lifecycle algorithm for the WP draft",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node main.js",
     "lint": "eslint main.js lib/",
     "lint-fix": "eslint --fix main.js lib/"
   },
@@ -22,7 +22,9 @@
   "dependencies": {
     "content-type": "^1.0.4",
     "jsdom": "^11.11.0",
+    "jsonld": "^1.0.2",
     "node-fetch": "^2.1.2",
+    "path": "^0.12.7",
     "underscore": "^1.9.1",
     "url": "^0.11.0",
     "valid-url": "^1.0.9"
