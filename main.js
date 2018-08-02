@@ -2,10 +2,9 @@
 
 'use strict';
 
-const url                                         = require('url');
-const _                                           = require('underscore');
-const path                                        = require('path');
-const { check_url, fetch_html, obtain_manifest }  = require('./lib/io');
+const url                              = require('url');
+const path                             = require('path');
+const { fetch_html, obtain_manifest }  = require('./lib/io');
 
 /* ------------------------------------------------------------------------------ */
 //                    Local helper to turn local file names into URL-s...
@@ -79,11 +78,12 @@ function getURL(base, arg) {
 
 // Set this to your local URL if you want to test locally...
 async function main() {
-    let final_url = "";
+    let final_url = '';
     try {
         final_url = getURL(process.argv[1], process.argv[2]);
         const top_level       = await fetch_html(final_url);
         const manifestObject  = await obtain_manifest(top_level);
+        // console.log(`Accessibility hazard: ${manifestObject.accessibilityHazard}`);
         console.log(JSON.stringify(manifestObject, null, 4));
     } catch (err) {
         console.warn(`Error occured when handling ${final_url}: ${err}`);

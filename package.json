@@ -20,6 +20,7 @@
   "license": "W3C-20150513",
   "bin": "./main.js",
   "dependencies": {
+    "assert": "^1.4.1",
     "content-type": "^1.0.4",
     "jsdom": "^11.11.0",
     "jsonld": "^1.0.2",
@@ -31,7 +32,7 @@
   },
   "devDependencies": {
     "ajv": "^6.5.2",
-    "eslint": "^5.1.0",
+    "eslint": "^5.2.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0"
   }

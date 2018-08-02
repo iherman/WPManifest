@@ -36,3 +36,5 @@ rules: # see https://eslint.org/docs/rules/
     consistent-return: off # because of Promise callbacks reject() usage
     no-unused-vars:
         - warn
+    no-underscore-dangle: off
+    no-use-before-define: off

@@ -9,6 +9,7 @@
         "@type"                 : "CreativeWork",
         "@id"                   : "http://www.w3.org/TR/tabular-data-model/",
         "url"                   : "http://www.w3.org/TR/2015/REC-tabular-data-model-20151217/",
+        "name"                  : "My Own Title",
         "copyrightYear"         : "2015",
         "copyrightHolder"       : "World Wide Web Consortium",
         "creator"               : [
@@ -31,10 +32,30 @@
             "datatypes.svg",
             "datatypes.png",
             "diff.html",
-            "test-utf8.csv",
-            "test-utf8-bom.csv",
-            "test-utf16.csv",
-            "test-utf16-bom.csv",
+            {
+                "@type"          : "StructuredValue",
+                "url"            : "test-utf8.csv",
+                "encodingFormat" : "text/csv"
+
+            },
+            {
+                "@type"          : "StructuredValue",
+                "url"            : "test-utf8-bom.csv",
+                "encodingFormat" : "text/csv"
+
+            },
+            {
+                "@type"          : "StructuredValue",
+                "url"            : "test-utf16.csv",
+                "encodingFormat" : "text/csv"
+
+            },
+            {
+                "@type"          : "StructuredValue",
+                "url"            : "test-utf16-bom.csv",
+                "encodingFormat" : "text/csv"
+
+            },
             "test.xls",
             "test.xlsx"
         ]
