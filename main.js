@@ -83,8 +83,8 @@ async function main() {
         final_url = getURL(process.argv[1], process.argv[2]);
         const top_level       = await fetch_html(final_url);
         const manifestObject  = await obtain_manifest(top_level);
-        // console.log(`Accessibility hazard: ${manifestObject.accessibilityHazard}`);
         console.log(JSON.stringify(manifestObject, null, 4));
+        console.log(manifestObject.cover);
     } catch (err) {
         console.warn(`Error occured when handling ${final_url}: ${err}`);
     }
