@@ -71,6 +71,70 @@ function getURL(base, arg) {
     }
 }
 
+/* ------------------------------------------------------------------------------ */
+/* For debug: more human readable printout of a manifest                          */
+/* ------------------------------------------------------------------------------ */
+const sp4 = '    ';
+const sp8 = '        ';
+const sp12 = '            ';
+function printoutManifest(manifest) {
+    const pr_text = (texts, sp = sp4) => {
+        if (texts === undefined) {
+            return `${sp}undefined\n`;
+        }
+        let str = '';
+        texts.forEach((item) => {
+            str += `${sp}${item.value} (${item.lang})\n`;
+        });
+        return str;
+    };
+    const pr_persons = (persons) => {
+        if (persons === undefined) return `${sp4}undefined\n`;
+        let str = '';
+        persons.forEach((item) => {
+            if (item.name !== undefined) {
+                str += `${sp4}Person/Organization:\n${pr_text(item.name, sp8)}`;
+            }
+            if (item.id !== undefined) {
+                str += `${sp8}identifier:\n${sp12}${item.id}\n`;
+            }
+            if (item.url !== undefined) {
+                str += `${sp8}address:\n${sp12}${item.url}\n`;
+            }
+        });
+        return str;
+    };
+    const pr_links = (links) => {
+        if (links === undefined) return `${sp4}undefined\n`;
+        let str = '';
+        links.forEach((item) => {
+            if (item.url !== undefined) {
+                str += `${sp4}URL:\n${sp8}${item.url}\n`;
+            }
+            if (item.encodingFormat !== undefined) {
+                str += `${sp8}Media type:\n${sp12}${item.encodingFormat}\n`;
+            }
+            if (item.rel !== undefined) {
+                str += `${sp8}rel:\n${sp12}${item.rel.join(',')}\n`;
+            }
+        });
+        return str;
+    };
+
+    let retval = '';
+    retval += `Publication name:\n${pr_text(manifest.name)}`;
+    retval += `Publication url:\n    ${manifest.url}\n`;
+    retval += `Publication identifier:\n    ${manifest.id}\n`;
+    retval += `Date Published:\n    ${manifest.datePublished}\n`;
+    retval += `Date Modified:\n    ${manifest.dateModified}\n`;
+    retval += `Author(s):\n${pr_persons(manifest.author)}`;
+    retval += `Editor(s):\n${pr_persons(manifest.editor)}`;
+    retval += `Reading Order:\n${pr_links(manifest.readingOrder)}`;
+    retval += `Resources:\n${pr_links(manifest.resources)}`;
+    retval += `Links:\n${pr_links(manifest.links)}`
+
+    return retval;
+}
 
 /* ------------------------------------------------------------------------------ */
 //                            Main entry point for testing
@@ -81,10 +145,11 @@ async function main() {
     let final_url = '';
     try {
         final_url = getURL(process.argv[1], process.argv[2]);
-        const top_level       = await fetch_html(final_url);
-        const manifestObject  = await obtain_manifest(top_level);
-        console.log(JSON.stringify(manifestObject, null, 4));
-        console.log(manifestObject.cover);
+        const top_level   = await fetch_html(final_url);
+        const { wpm, logger } = await obtain_manifest(top_level);
+        console.log(printoutManifest(wpm));
+        console.log('---- Errors/warnings: ----');
+        console.log(logger.toString());
     } catch (err) {
         console.warn(`Error occured when handling ${final_url}: ${err}`);
     }
