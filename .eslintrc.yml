@@ -2,7 +2,7 @@ extends: airbnb-base
 rules: # see https://eslint.org/docs/rules/
     max-len:
         - warn
-        - code: 120
+        - code: 140
     no-extra-semi:
         - warn
     indent:
@@ -38,3 +38,4 @@ rules: # see https://eslint.org/docs/rules/
         - warn
     no-underscore-dangle: off
     no-use-before-define: off
+    prefer-template: off
