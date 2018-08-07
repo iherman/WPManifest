@@ -127,6 +127,7 @@ function printoutManifest(manifest) {
     retval += `Publication identifier:\n    ${manifest.id}\n`;
     retval += `Date Published:\n    ${manifest.datePublished}\n`;
     retval += `Date Modified:\n    ${manifest.dateModified}\n`;
+    retval += `Access Mode:\n    ${manifest.accessMode}\n`;
     retval += `Author(s):\n${pr_persons(manifest.author)}`;
     retval += `Editor(s):\n${pr_persons(manifest.editor)}`;
     retval += `Reading Order:\n${pr_links(manifest.readingOrder)}`;
@@ -147,6 +148,7 @@ async function main() {
         final_url = getURL(process.argv[1], process.argv[2]);
         const top_level   = await fetch_html(final_url);
         const { wpm, logger } = await obtain_manifest(top_level);
+        // console.log(JSON.stringify(wpm, null, 4));
         console.log(printoutManifest(wpm));
         console.log('---- Errors/warnings: ----');
         console.log(logger.toString());
