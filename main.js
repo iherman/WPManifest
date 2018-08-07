@@ -153,7 +153,7 @@ async function main() {
         console.log('---- Errors/warnings: ----');
         console.log(logger.toString());
     } catch (err) {
-        console.warn(`Error occured when handling ${final_url}: ${err}`);
+        console.warn(`${err}`);
     }
 }
 
