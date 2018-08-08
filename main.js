@@ -72,7 +72,10 @@ function getURL(base, arg) {
 }
 
 /* ------------------------------------------------------------------------------ */
-/* For debug: more human readable printout of a manifest                          */
+/* For debug: more human readable printout of a manifest
+/* It is not complete for the manifest: e.g., only author and editor              */
+/* are understood and the other creators are ignored. Also, only one a11y term    */
+/* understood.                                                                    */
 /* ------------------------------------------------------------------------------ */
 const sp4 = '    ';
 const sp8 = '        ';
@@ -104,19 +107,26 @@ function printoutManifest(manifest) {
         });
         return str;
     };
+    const pr_one_link = (item) => {
+        if (item === undefined) return `${sp4}undefined\n`;
+        let pstr = '';
+        if (item.url !== undefined) {
+            pstr += `${sp4}URL:\n${sp8}${item.url}\n`;
+        }
+        if (item.encodingFormat !== undefined) {
+            pstr += `${sp8}Media type:\n${sp12}${item.encodingFormat}\n`;
+        }
+        if (item.rel !== undefined) {
+            pstr += `${sp8}rel:\n${sp12}${item.rel.join(', ')}\n`;
+        }
+        return pstr;
+    };
+
     const pr_links = (links) => {
         if (links === undefined) return `${sp4}undefined\n`;
         let str = '';
         links.forEach((item) => {
-            if (item.url !== undefined) {
-                str += `${sp4}URL:\n${sp8}${item.url}\n`;
-            }
-            if (item.encodingFormat !== undefined) {
-                str += `${sp8}Media type:\n${sp12}${item.encodingFormat}\n`;
-            }
-            if (item.rel !== undefined) {
-                str += `${sp8}rel:\n${sp12}${item.rel.join(',')}\n`;
-            }
+            str += pr_one_link(item);
         });
         return str;
     };
@@ -132,7 +142,10 @@ function printoutManifest(manifest) {
     retval += `Editor(s):\n${pr_persons(manifest.editor)}`;
     retval += `Reading Order:\n${pr_links(manifest.readingOrder)}`;
     retval += `Resources:\n${pr_links(manifest.resources)}`;
-    retval += `Links:\n${pr_links(manifest.links)}`
+    retval += `Links:\n${pr_links(manifest.links)}`;
+    retval += `Privacy Policy:\n${pr_one_link(manifest.privacyPolicy)}`;
+    retval += `Accessibility Report:\n${pr_one_link(manifest.accessibilityReport)}`;
+    retval += `Cover(s):\n${pr_links(manifest.cover)}`;
 
     return retval;
 }
@@ -145,6 +158,7 @@ function printoutManifest(manifest) {
 async function main() {
     let final_url = '';
     try {
+        // Get the final URL from a CLI (possibly a local file)
         final_url = getURL(process.argv[1], process.argv[2]);
         const top_level   = await fetch_html(final_url);
         const { wpm, logger } = await obtain_manifest(top_level);
@@ -153,7 +167,7 @@ async function main() {
         console.log('---- Errors/warnings: ----');
         console.log(logger.toString());
     } catch (err) {
-        console.warn(`${err}`);
+        console.log(`${err}`);
     }
 }
 
