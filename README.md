@@ -7,7 +7,7 @@ The implementation is fairly complete; the only pending feature is the Table Of 
 
 The core of the implementation are the modules in the `lib` folder, and there is a top level `main.js` serving as a CLI driver. There are some rudimentary tests in the `tests` folder, but a more systematic set of tests are obviously necessary as a future work. The whole environment runs in `node.js`, and can be installed locally via `npm`. See the `package.json` for dependencies.
 
-When used as a library, the main entry point is `lib/io.js/obtain_manifest()` with one argument: the DOM of the primary entry page (using the `JSDOM` module in `node.js`). This method returns an object `{logger, wpm}`, with `logger` for all possible warnings and errors, and `wpm` is the embodiment, in a JavaScript class, of the `WebPublicationManifest` WebIDL interface.
+When used as a library, the main entry point is `lib/process.js/obtain_manifest()` with one argument: the DOM of the primary entry page (using the `JSDOM` module in `node.js`). This method returns an object `{logger, wpm}`, with `logger` for all possible warnings and errors, and `wpm` is the embodiment, in a JavaScript class, of the `WebPublicationManifest` WebIDL interface.
 
 ---
 

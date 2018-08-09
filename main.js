@@ -2,9 +2,10 @@
 
 'use strict';
 
-const url                              = require('url');
-const path                             = require('path');
-const { fetch_html, obtain_manifest }  = require('./lib/io');
+const url                 = require('url');
+const path                = require('path');
+const { fetch_html }      = require('./lib/utils');
+const { obtain_manifest } = require('./lib/process');
 
 /* ------------------------------------------------------------------------------ */
 //                    Local helper to turn local file names into URL-s...
