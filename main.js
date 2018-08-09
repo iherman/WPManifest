@@ -140,6 +140,7 @@ function printoutManifest(manifest) {
     retval += `Access Mode:\n    ${manifest.accessMode}\n`;
     retval += `Author(s):\n${pr_persons(manifest.author)}`;
     retval += `Editor(s):\n${pr_persons(manifest.editor)}`;
+    retval += `Creator(s):\n${pr_persons(manifest.creator)}`;
     retval += `Reading Order:\n${pr_links(manifest.readingOrder)}`;
     retval += `Resources:\n${pr_links(manifest.resources)}`;
     retval += `Links:\n${pr_links(manifest.links)}`;
