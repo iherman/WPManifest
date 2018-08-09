@@ -147,7 +147,12 @@ function printoutManifest(manifest) {
     retval += `Privacy Policy:\n${pr_one_link(manifest.privacyPolicy)}`;
     retval += `Accessibility Report:\n${pr_one_link(manifest.accessibilityReport)}`;
     retval += `Cover(s):\n${pr_links(manifest.cover)}`;
-
+    const toc = manifest.toc;
+    if (toc === undefined) {
+        retval += 'TOC:\n    undefined';
+    } else {
+        retval += `TOC:\n    ${toc.tagName}`;
+    }
     return retval;
 }
 
