@@ -20,18 +20,15 @@
   "license": "W3C-20150513",
   "bin": "./main.js",
   "dependencies": {
-    "assert": "^1.4.1",
     "content-type": "^1.0.4",
     "jsdom": "^11.11.0",
     "moment": "^2.22.2",
     "node-fetch": "^2.1.2",
     "path": "^0.12.7",
-    "underscore": "^1.9.1",
     "url": "^0.11.0",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "ajv": "^6.5.2",
     "eslint": "^5.2.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0"
