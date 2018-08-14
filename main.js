@@ -124,7 +124,9 @@ function printoutManifest(manifest) {
     };
 
     const pr_links = (links) => {
-        if (links === undefined) return `${sp4}undefined\n`;
+        if (links.length === 0) {
+            return `${sp4}[]\n`;
+        }
         let str = '';
         links.forEach((item) => {
             str += pr_one_link(item);
@@ -152,7 +154,7 @@ function printoutManifest(manifest) {
     if (toc === undefined) {
         retval += 'TOC:\n    undefined';
     } else {
-        retval += `TOC:\n    ${toc.tagName}`;
+        retval += `TOC:\n    HTML Element "${toc.tagName}"`;
     }
     return retval;
 }
@@ -170,6 +172,7 @@ async function main() {
         const top_level   = await fetch_html(final_url);
         const { wpm, logger } = await obtain_manifest(top_level);
         // console.log(JSON.stringify(wpm, null, 4));
+
         console.log(printoutManifest(wpm));
         console.log('---- Errors/warnings: ----');
         console.log(logger.toString());
