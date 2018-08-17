@@ -3,7 +3,7 @@
 <head>
     <title>Na mi van</title>
     <link rel="publication" href="#manifest" />
-    <script type="application/ld+json" id="manifest">
+    <script type="application/ld+json" id="manifest" lang="en-us">
     {
         "@context"              : ["https://schema.org", "https://www.w3.org/ns/wp-context"],
         "@type"                 : "CreativeWork",
@@ -12,20 +12,8 @@
         "name"                  : "My Own Title",
         "copyrightYear"         : "2015",
         "copyrightHolder"       : "World Wide Web Consortium",
-        "creator"               : [
-            {
-                "@type"         : "Person",
-                "name"          : "Jeni Tennison"
-            },
-            {
-                "@type"         : "Person",
-                "name"          : "Gregg Kellogg"
-            },
-            {
-                "@type"         : "Person",
-                "name"          : "Ivan Herman"
-            }
-        ],
+        "accessibilitySummary"  : "Just a test summary",
+        "creator"               : ["Jeni Tennison", "Gregg Kellogg", "Ivan Herman"],
         "datePublished"         : "2015-12-17",
         "resources"             : [
             "datatypes.html",
@@ -58,7 +46,14 @@
             },
             "test.xls",
             "test.xlsx"
-        ]
+        ],
+        "links" : {
+            "@type"          : "PublicationLink",
+            "url"            : "https://www.w3.org/Consortium/Legal/privacy-statement-20140324",
+            "encodingFormat" : "text/html",
+            "rel"            : "privacy-policy",
+            "name"           : "W3C Privacy Policy"
+        }
     }
     </script>
 </head>
