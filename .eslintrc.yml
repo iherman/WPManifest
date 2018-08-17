@@ -39,3 +39,4 @@ rules: # see https://eslint.org/docs/rules/
     no-underscore-dangle: off
     no-use-before-define: off
     prefer-template: off
+    no-else-return: off
