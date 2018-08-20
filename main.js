@@ -170,16 +170,12 @@ async function main() {
         // Get the final URL from a CLI (possibly a local file)
         final_url = getURL(process.argv[1], process.argv[2]);
         const top_level = await fetch_html(final_url);
-        const { can_manifest, logger } = await obtain_manifest(top_level);
-        console.log(JSON.stringify(can_manifest, null, 4));
-        console.log('----- Errors/warnings ------');
-        console.log(logger.toString());
-        // const { wpm, logger } = await obtain_manifest(top_level);
-        // // console.log(JSON.stringify(wpm, null, 4));
+        const { wpm, logger } = await obtain_manifest(top_level);
+        // console.log(JSON.stringify(wpm, null, 4));
 
-        // console.log(printoutManifest(wpm));
-        // console.log('---- Errors/warnings: ----');
-        // console.log(logger.toString());
+        console.log(printoutManifest(wpm));
+        console.log('---- Errors/warnings: ----');
+        console.log(logger.toString());
     } catch (err) {
         console.log(`${err}`);
     }
