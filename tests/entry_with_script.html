@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-    <title>Na mi van</title>
-    <link rel="publication" href="#manifest" />
-    <script type="application/ld+json" id="manifest" lang="en-us">
+    <title>Model for Tabular Data and Metadata on the Web</title>
+    <link href="#wpm" rel="publication" />
+    ...
+    <script id="wpm" type="application/ld+json">
     {
         "@context"              : ["https://schema.org", "https://www.w3.org/ns/wp-context"],
         "@type"                 : "CreativeWork",
         "@id"                   : "http://www.w3.org/TR/tabular-data-model/",
         "url"                   : "http://www.w3.org/TR/2015/REC-tabular-data-model-20151217/",
-        "name"                  : "My Own Title",
         "copyrightYear"         : "2015",
         "copyrightHolder"       : "World Wide Web Consortium",
-        "accessibilitySummary"  : "Just a test summary",
         "creator"               : ["Jeni Tennison", "Gregg Kellogg", "Ivan Herman"],
+        "publisher" : {
+            "@type" : "Organization",
+            "name" : "World Wide Web Consortium",
+            "@id"  : "https://www.w3.org/"
+        },
         "datePublished"         : "2015-12-17",
         "resources"             : [
             "datatypes.html",
@@ -21,43 +25,31 @@
             "datatypes.png",
             "diff.html",
             {
-                "@type"          : "PublicationLink",
+                "@type"          : "StructuredValue",
                 "url"            : "test-utf8.csv",
                 "encodingFormat" : "text/csv"
 
             },
             {
-                "@type"          : "PublicationLink",
-                "url"            : "test-utf8-bom.csv",
-                "encodingFormat" : "text/csv"
-
-            },
-            {
-                "@type"          : "PublicationLink",
-                "url"            : "test-utf16.csv",
-                "encodingFormat" : "text/csv"
-
-            },
-            {
-                "@type"          : "PublicationLink",
-                "url"            : "test-utf16-bom.csv",
-                "encodingFormat" : "text/csv"
-
-            },
-            "test.xls",
-            "test.xlsx"
-        ],
-        "links" : {
-            "@type"          : "PublicationLink",
-            "url"            : "https://www.w3.org/Consortium/Legal/privacy-statement-20140324",
-            "encodingFormat" : "text/html",
-            "rel"            : "privacy-policy",
-            "name"           : "W3C Privacy Policy"
-        }
+                "@type"          : "StructuredValue",
+                "url"            : "test.xlsx",
+                "encodingFormat" : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            }
+        ]
     }
     </script>
 </head>
 <body>
-    <p>This is just a fake entry point.</p>
+    ....
+
+    <section id="toc" role="doc-toc">
+        <h2 resource="#h-toc" id="h-toc" class="introductory">Table of Contents</h2>
+        <ul class="toc">
+            <li class="tocline"><a class="tocxref" href="#intro"><span class="secno">1. </span>Introduction</a></li>
+            ...
+        </ul>
+    </section>
+    ...
+
 </body>
 </html>

@@ -141,6 +141,7 @@ function printoutManifest(manifest) {
     retval += `Date Published:\n    ${manifest.datePublished}\n`;
     retval += `Date Modified:\n    ${manifest.dateModified}\n`;
     retval += `Access Mode:\n    ${manifest.accessMode}\n`;
+    retval += `Access Mode Sufficient:\n    ${manifest.accessModeSufficient}\n`;
     retval += `Author(s):\n${pr_persons(manifest.author)}`;
     retval += `Editor(s):\n${pr_persons(manifest.editor)}`;
     retval += `Creator(s):\n${pr_persons(manifest.creator)}`;
@@ -164,23 +165,31 @@ function printoutManifest(manifest) {
 /* ------------------------------------------------------------------------------ */
 
 // Set this to your local URL if you want to test locally...
-async function main() {
+async function main(base, file, c_or_d) {
     let final_url = '';
     try {
         // Get the final URL from a CLI (possibly a local file)
-        final_url = getURL(process.argv[1], process.argv[2]);
+        final_url = getURL(base, file);
         const top_level = await fetch_html(final_url);
-        const { wpm, logger } = await obtain_manifest(top_level);
-        // console.log(JSON.stringify(wpm, null, 4));
-
-        console.log(printoutManifest(wpm));
-        console.log('---- Errors/warnings: ----');
-        console.log(logger.toString());
+        const { wpm, canonical_manifest, logger } = await obtain_manifest(top_level);
+        if (c_or_d) {
+            if (process.argv[2] === '-c') {
+                console.log(JSON.stringify(canonical_manifest, null, 4));
+            } else if (process.argv[2] === '-d') {
+                console.log(JSON.stringify(wpm, null, 4));
+            }
+        } else {
+            console.log(printoutManifest(wpm));
+            console.log('---- Errors/warnings: ----');
+            console.log(logger.toString());
+        }
     } catch (err) {
         console.log(`${err}`);
     }
 }
 
 
-// Do it!
-main();
+// Adding a '-c': print out the canonical manifest only
+// Addgin a '-d': print out the full generated Web Publication Manifest object, rather than the printout
+const canonical_or_debug = (process.argv[2] === '-c' || process.argv[2] === '-d');
+main(process.argv[1], canonical_or_debug ? process.argv[3] : process.argv[2], canonical_or_debug);
