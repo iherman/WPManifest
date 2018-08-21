@@ -169,7 +169,7 @@ async function main() {
     try {
         // Get the final URL from a CLI (possibly a local file)
         final_url = getURL(process.argv[1], process.argv[2]);
-        const top_level   = await fetch_html(final_url);
+        const top_level = await fetch_html(final_url);
         const { wpm, logger } = await obtain_manifest(top_level);
         // console.log(JSON.stringify(wpm, null, 4));
 
