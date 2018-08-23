@@ -88,7 +88,7 @@ function printoutManifest(manifest) {
         }
         let str = '';
         texts.forEach((item) => {
-            str += `${sp}${item.value} (${item.lang})\n`;
+            str += `${sp}${item.value} (${item.language})\n`;
         });
         return str;
     };
@@ -98,6 +98,9 @@ function printoutManifest(manifest) {
         persons.forEach((item) => {
             if (item.name !== undefined) {
                 str += `${sp4}Person/Organization:\n${pr_text(item.name, sp8)}`;
+            }
+            if (item.type !== undefined) {
+                str += `${sp4}type: ${(item.type)}`;
             }
             if (item.id !== undefined) {
                 str += `${sp8}identifier:\n${sp12}${item.id}\n`;
