@@ -78,6 +78,7 @@ function getURL(base, arg) {
 /* are understood and the other creators are ignored. Also, only one a11y term    */
 /* understood.                                                                    */
 /* ------------------------------------------------------------------------------ */
+const sp1 = ' ';
 const sp4 = '    ';
 const sp8 = '        ';
 const sp12 = '            ';
@@ -86,18 +87,24 @@ function printoutManifest(manifest) {
         if (texts === undefined) {
             return `${sp}undefined\n`;
         }
-        let str = '';
-        texts.forEach((item) => {
-            str += `${sp}${item.value} (${item.lang})\n`;
-        });
-        return str;
+        const str = texts.map((item) => {
+            if (item.language) {
+                return `${item.value} (${item.language})`;
+            } else {
+                return `${item.value}`;
+            }
+        }).join('; ');
+        return `${sp}${str}\n`
     };
     const pr_persons = (persons) => {
         if (persons === undefined) return `${sp4}undefined\n`;
         let str = '';
         persons.forEach((item) => {
             if (item.name !== undefined) {
-                str += `${sp4}Person/Organization:\n${pr_text(item.name, sp8)}`;
+                str += `${sp4}Contributor:\n${sp8}name:${pr_text(item.name, sp1)}`;
+            }
+            if (item.type !== undefined) {
+                str += `${sp8}type: ${(item.type)}\n`;
             }
             if (item.id !== undefined) {
                 str += `${sp8}identifier:\n${sp12}${item.id}\n`;
@@ -118,7 +125,7 @@ function printoutManifest(manifest) {
             pstr += `${sp8}Media type:\n${sp12}${item.encodingFormat}\n`;
         }
         if (item.rel !== undefined) {
-            pstr += `${sp8}rel:\n${sp12}${item.rel.join(', ')}\n`;
+            pstr += `${sp8}rel:\n${sp12}${item.rel.join('; ')}\n`;
         }
         return pstr;
     };
@@ -141,10 +148,11 @@ function printoutManifest(manifest) {
     retval += `Date Published:\n    ${manifest.datePublished}\n`;
     retval += `Date Modified:\n    ${manifest.dateModified}\n`;
     retval += `Access Mode:\n    ${manifest.accessMode}\n`;
-    retval += `Access Mode Sufficient:\n    ${manifest.accessModeSufficient}\n`;
+    retval += `Access Mode Sufficient:\n    ${manifest.accessModeSufficient ? manifest.accessModeSufficient.join('; ') : undefined}\n`;
     retval += `Author(s):\n${pr_persons(manifest.author)}`;
     retval += `Editor(s):\n${pr_persons(manifest.editor)}`;
     retval += `Creator(s):\n${pr_persons(manifest.creator)}`;
+    retval += `Publisher(s):\n${pr_persons(manifest.publisher)}`;
     retval += `Reading Order:\n${pr_links(manifest.readingOrder)}`;
     retval += `Resources:\n${pr_links(manifest.resources)}`;
     retval += `Links:\n${pr_links(manifest.links)}`;
