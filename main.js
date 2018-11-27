@@ -156,15 +156,6 @@ function printoutManifest(manifest) {
     retval += `Reading Order:\n${pr_links(manifest.readingOrder)}`;
     retval += `Resources:\n${pr_links(manifest.resources)}`;
     retval += `Links:\n${pr_links(manifest.links)}`;
-    retval += `Privacy Policy:\n${pr_one_link(manifest.privacyPolicy)}`;
-    retval += `Accessibility Report:\n${pr_one_link(manifest.accessibilityReport)}`;
-    retval += `Cover(s):\n${pr_links(manifest.cover)}`;
-    const toc = manifest.toc;
-    if (toc === undefined) {
-        retval += 'TOC:\n    undefined';
-    } else {
-        retval += `TOC:\n    HTML Element "${toc.tagName}"`;
-    }
     return retval;
 }
 
