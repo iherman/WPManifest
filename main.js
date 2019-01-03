@@ -94,7 +94,7 @@ function printoutManifest(manifest) {
                 return `${item.value}`;
             }
         }).join('; ');
-        return `${sp}${str}\n`
+        return `${sp}${str}\n`;
     };
     const pr_persons = (persons) => {
         if (persons === undefined) return `${sp4}undefined\n`;

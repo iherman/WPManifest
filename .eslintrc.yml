@@ -3,6 +3,7 @@ rules: # see https://eslint.org/docs/rules/
     max-len:
         - warn
         - code: 160
+          ignorePattern: "true"
     no-extra-semi:
         - warn
     indent:
