@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Canonical Manifest Converter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Canonical Manifest Converter</h1>
+    </header>
+    <main>
+        <div id="original" class="container">
+            <label for="wpm">Manifest to convert:</label> <br>
+            <textarea class="text" name="wpm" id="wpm" cols=100 rows="20"></textarea>
+            <br/>
+            <input type="button" id='fetch_wpm' name='fetch_wpm' value='Fetch the WPM from:'/>
+            <textarea class="text" name="wpm_url" id="wpm_url" cols="90" rows="1"></textarea>
+            <br>
+        </div>
+        <div id="generated" class="container">
+            <label for="canonical_wpm">Canonical Manifest:</label>
+            <textarea class="text" name="canonical_wpm" id="canonical_wom" cols="90" rows="20"></textarea>
+        </div>
+        <div id="convert" class="container">
+            <input type="button" name="canonicalize" id="canonicalize" value='Canonicalize'>
+        </div>
+    </main>
+</body>
+</html>
