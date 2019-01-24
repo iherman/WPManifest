@@ -6,7 +6,7 @@
     <title>Canonical Manifest Converter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <script src="js/wpm.js"></script>
+    <script src="js/wpm.min.js"></script>
 </head>
 <body>
     <header>
@@ -17,7 +17,7 @@
             <div class=container id=wpm_input>
                 <div>
                     <label>Manifest to convert:
-                        <textarea class="text" id="wpm" cols=100 rows="20"></textarea>
+                        <textarea class="text" id="wpm_holder" cols=100 rows="20" data-url=''></textarea>
                     </label>
                 </div>
                 <div>
@@ -46,6 +46,39 @@
                 <textarea class="text" id="pep_url" cols="90" rows="1"></textarea>
             </div>
         </div>
+
+        <h2>Description</h2>
+
+        <p>
+            This is a non-production level tool to see what transformations are performed by the <a href='https://www.w3.org/TR/wpub/#canonical-manifest'>Canonicalization Algorithm of Web Publication Manifest specification</a>. The internal code is based on an an (experimental) code on the interpretation of a Web Publication Manifest; see the <a href='https://www.w3.org/TR/wpub/#canonical-manifest'>description of that experiment</a>.
+        </p>
+        <p>
+            The user may provide a JSON-LD file containing a Web Publication Manifest, which is transformed into the canonical equivalent. The possible ways of submitting a manifest are:
+        </p>
+
+        <ul>
+            <li>
+                The text panel on the left, labeled as “Manifest to convert” is editable: the user can type in, or paste, a full manifest. Pushing the “Canonicalize” button generates the canonical version on the right panel. The panel can also be filled by:
+                <ul>
+                    <li>
+                        providing a URL for a manifest file; this is then uploaded into the text panel; or
+                    </li>
+                    <li>
+                        uploading a local file.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                The user can provide the URL of an <a href="https://www.w3.org/TR/wpub/#wp-primary-entry-page">HTML Primary Entry Page</a>. By pushing the corresponding button the manifest file is extracted (following the <a href="https://www.w3.org/TR/wpub/#manifest-linking">the steps described in the specification</a>), the result filled in the text panel, and the canonicalization triggered automatically.
+            </li>
+        </ul>
+
+        <p>
+            Note that, strictly speaking some of those combination may not be correct: indeed, the canonicalization algorithm requires that all relative URL-s are transformed into absolute ones. This cannot be done properly if the manifest is copy pasted, edited by hand, or uploaded from a local file.
+        </p>
     </main>
+    <footer>
+        Ivan Herman, W3C, <a href="mailto:ivan@w3.org">&lt;ivan@w3.org&gt;</a>. Last modified: <span id='date'></span>.
+    </footer>
 </body>
 </html>
