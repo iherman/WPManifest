@@ -3,7 +3,13 @@
 const { JSDOM }     = require('jsdom');
 const fetch         = require('node-fetch');
 const contentType   = require('content-type');
-const { check_url, obtain_manifest, Logger, calculate_defaults } = require('../../lib/utils');
+const {
+    check_url,
+    obtain_manifest,
+    Logger,
+    fetch_json,
+    fetch_html
+ } = require('../../lib/utils');
 const { get_canonical_manifest } = require('../../lib/process');
 
 const json_content_type = 'application/json';
@@ -55,75 +61,60 @@ async function fetch_resource(resource_url) {
     });
 }
 
-
 async function get_wpm(e) {
     try {
-        const fetch_url = document.getElementById('wpm_url').value;
-        const wpm = document.getElementById('wpm');
-        const data = wpm.dataset;
-
-        const { resource, content_type } = await fetch_resource(fetch_url);
-        const text = await resource;
-        if (content_type === json_content_type) {
-            wpm.value = text;
-
-            data.lang = '';
-            data.dir  = '';
-            data.base = fetch_url;
-            data.title = '';
-            data.titlelang = '';
-            data.url = '';
-        } else if (content_type === html_content_type) {
-            const dom = new JSDOM(text, { url: fetch_url });
-            const defaults = calculate_defaults(dom);
-            const manifest_data = await obtain_manifest(dom);
-
-            wpm.value = manifest_data.manifest_text;
-
-            data.lang = manifest_data.lang;
-            data.dir = manifest_data.dir;
-            data.base = manifest_data.base;
-            data.title = defaults.title;
-            data.titlelang = defaults.title_lang;
-            data.url = defaults.url;
-        } else {
-            console.log('Content type must be HTML or JSON');
-        }
+        const wpm_url  = document.getElementById('wpm_url').value;
+        const wpm_holder = document.getElementById('wpm');
+        const wpm = await fetch_json(wpm_url);
+        wpm_holder.value = wpm;
     } catch (err) {
-        console.log(`Error in get_pwm: ${err.message}`);
+        console.error(`Error in get_pwm: ${err.message}`);
     }
 }
 
 function convert(e) {
-    const logger = new Logger();
-    try {
-        const wpm = document.getElementById('wpm');
-        const data = wpm.dataset;
+    alert("Convert data from text box");
+    // const logger = new Logger();
+    // try {
+    //     const wpm = document.getElementById('wpm');
+    //     const data = wpm.dataset;
 
-        if (wpm.value !== '') {
-            const manifest_data = {
-                manifest_text : wpm.value,
-                dom           : data.dom === '' ? undefined : data.dom,
-                base          : data.base,
-                lang          : data.lang,
-                dir           : data.dir
-            };
-            console.log(data);
-            const canonical_wpm = document.getElementById('canonical_wpm');
-            manifest_data.dom = undefined;
-            const c_manifest_object = get_canonical_manifest(logger, manifest_data);
+    //     if (wpm.value !== '') {
+    //         const manifest_data = {
+    //             manifest_text : wpm.value,
+    //             dom           : data.dom === '' ? undefined : data.dom,
+    //             base          : data.base,
+    //             lang          : data.lang,
+    //             dir           : data.dir
+    //         };
+    //         console.log(data);
+    //         const canonical_wpm = document.getElementById('canonical_wpm');
+    //         manifest_data.dom = undefined;
+    //         const c_manifest_object = get_canonical_manifest(logger, manifest_data);
 
-            canonical_wpm.value = JSON.stringify(c_manifest_object, null, 4);
-        }
-    } catch (err) {
-        console.log(`Error in canonicalization: ${err.message} in ${err.lineNumber}`);
-    } finally {
-        console.log(logger.toString());
-    }
+    //         canonical_wpm.value = JSON.stringify(c_manifest_object, null, 4);
+    //     }
+    // } catch (err) {
+    //     console.log(`Error in canonicalization: ${err.message} in ${err.lineNumber}`);
+    // } finally {
+    //     console.log(logger.toString());
+    // }
 }
+
+function upload_wpm(e) {
+    alert("Upload a json file and put it into the text")
+}
+
+function get_pep(e) {
+    alert("Fetch PEP, get the manifest, put it and convert");
+}
+
+
 
 
 window.addEventListener('load', (e) => {
     document.getElementById('fetch_wpm').addEventListener('click', get_wpm);
+    document.getElementById('upload_wpm').addEventListener('click', upload_wpm);
+    document.getElementById('fetch_pep').addEventListener('click', get_pep);
     document.getElementById('canonicalize').addEventListener('click', convert);
 });
