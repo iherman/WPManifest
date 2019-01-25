@@ -11,15 +11,6 @@ const {
 } = require('../../lib/utils');
 const { get_canonical_manifest } = require('../../lib/process');
 
-/**
- * Empty that various text fields when a new textual content is uploaded.
- */
-function clean_up() {
-    document.getElementById('canonical_wpm').value = '';
-    document.getElementById('wpm_url').value = '';
-    document.getElementById('pep_url').value = '';
-}
-
 
 /**
  * Fetch the JSON-LD manifest from the URL in the `wpm_url` input form, and display it in the
@@ -168,5 +159,3 @@ window.addEventListener('load', (e) => {
     document.getElementById('upload_wpm').addEventListener('change', upload_wpm);
     document.getElementById('date').textContent = printDate();
 });
-
-

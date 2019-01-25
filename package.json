@@ -1,7 +1,7 @@
 {
   "name": "wp-manifest",
   "version": "1.0.0",
-  "description": "Testing the manifest lifecycle algorithm for the WP draft",
+  "description": "Testing the manifest life cycle algorithm for the WP draft",
   "main": "main.js",
   "scripts": {
     "test": "node main.js",
