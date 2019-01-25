@@ -3,4 +3,4 @@ modules = $(lib)/CanonicalManifest.js $(lib)/WebPublicationManifest.js $(lib)/pr
 
 ../js/wpm.js : main.js $(modules)
 	browserify main.js > ../js/wpm.js
-	uglifyjs ../js/wpm.js > ../js/wpm.min.js
+	terser ../js/wpm.js > ../js/wpm.min.js
