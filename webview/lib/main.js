@@ -30,7 +30,7 @@ function clean_up() {
  */
 async function get_wpm(e) {
     try {
-        const wpm_url  = document.getElementById('wpm_url').value;
+        const wpm_url  = e.target.value;
         const wpm_holder = document.getElementById('wpm_holder');
         const data = wpm_holder.dataset;
         const wpm = await fetch_json(wpm_url);
@@ -116,7 +116,7 @@ function upload_wpm(e) {
 async function get_pep(e) {
     const logger = new Logger();
     try {
-        const pep_url  = document.getElementById('pep_url').value;
+        const pep_url = e.target.value;
         const wpm_holder = document.getElementById('wpm_holder');
         const canonical_wpm = document.getElementById('canonical_wpm');
 
@@ -161,8 +161,9 @@ function printDate() {
 }
 
 window.addEventListener('load', (e) => {
-    document.getElementById('fetch_wpm').addEventListener('click', get_wpm);
-    document.getElementById('fetch_pep').addEventListener('click', get_pep);
+    // document.getElementById('fetch_wpm').addEventListener('click', get_wpm);
+    document.getElementById('wpm_url').addEventListener('change', get_wpm);
+    document.getElementById('pep_url').addEventListener('change', get_pep);
     document.getElementById('canonicalize').addEventListener('click', convert);
     document.getElementById('upload_wpm').addEventListener('change', upload_wpm);
     document.getElementById('date').textContent = printDate();

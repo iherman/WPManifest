@@ -6,8 +6,8 @@
     <title>Canonical Manifest Converter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <script src="js/wpm.min.js"></script>
-</head>
+    <script src="js/wpm.js"></script>
+ </head>
 <body>
     <header>
         <h1>Canonical Manifest Converter</h1>
@@ -21,12 +21,14 @@
                     </label>
                 </div>
                 <div>
-                    <input type="button" id='fetch_wpm' value='JSON-LD Manifest from:'/>
-                    <textarea class="text" id="wpm_url" cols="90" rows="1"></textarea>
+                    <label>
+                        JSON-LD Manifest from:<br>
+                        <input type=text id="wpm_url" size="60" placeholder="http://" />
+                    </label>
                 </div>
                 <div>
                     <label>Local file to upload:
-                        <input id="upload_wpm" type="file" width="40"/>
+                        <input id="upload_wpm" type="file" width="40" spellcheck=false/>
                     </label>
                 </div>
             </div>
@@ -40,10 +42,11 @@
                     <textarea class="text" id="canonical_wpm" cols="90" rows="35"></textarea>
                 </label>
             </div>
-
             <div class=container>
-                <input type="button" id='fetch_pep' value='Manifest via the Primary Entry Page:'/>
-                <textarea class="text" id="pep_url" cols="90" rows="1"></textarea>
+                <label for="">
+                    Primary Entry Page:<br>
+                    <input type=text id="pep_url" size="60" placeholder="http://" />
+                </label>
             </div>
         </div>
 
