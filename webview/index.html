@@ -17,7 +17,7 @@
             <div class=container id=wpm_input>
                 <div>
                     <label>Manifest to convert:
-                        <textarea class="text" id="wpm_holder" cols=100 rows="20" data-url=''></textarea>
+                        <textarea class="text" id="wpm_holder" cols=100 rows="25" data-url=''></textarea>
                     </label>
                 </div>
                 <div>
@@ -39,8 +39,10 @@
 
             <div id="generated" class="container">
                 <label>Canonical Manifest:
-                    <textarea class="text" id="canonical_wpm" cols="90" rows="35"></textarea>
+                    <textarea class="text" id="canonical_wpm" cols="90" rows="40"></textarea>
                 </label>
+                <input type='button' id='save' value='Save as…'>
+                <a style='display:none' id='download'></a>
             </div>
             <div class=container>
                 <label for="">
@@ -77,11 +79,16 @@
         </ul>
 
         <p>
-            Note that, strictly speaking some of those combination may not be correct: indeed, the canonicalization algorithm requires that all relative URL-s are transformed into absolute ones. This cannot be done properly if the manifest is copy pasted, edited by hand, or uploaded from a local file.
+            Note that, strictly speaking, some of those combination may not be correct: indeed, the canonicalization algorithm requires that all relative URL-s are transformed into absolute ones. This cannot be done properly if the manifest is copy pasted, edited by hand, or uploaded from a local file.
         </p>
     </main>
     <footer>
-        Ivan Herman, W3C, <a href="mailto:ivan@w3.org">&lt;ivan@w3.org&gt;</a>. Last modified: <span id='date'></span>.
+        <p>
+            The page uses API-s and HTML attributes that may not be available for all browsers yet.
+        </p>
+        <p>
+            Ivan Herman, W3C, <a href="mailto:ivan@w3.org">&lt;ivan@w3.org&gt;</a>. Last modified: <span id='date'></span>.
+        </p>
     </footer>
 </body>
 </html>

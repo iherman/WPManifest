@@ -17,7 +17,6 @@ const { get_canonical_manifest } = require('../../lib/process');
  * relevant `wpm_holder` text box.
  *
  * @async
- * @param {Event} e - Event structure (unused)
  */
 async function get_wpm(e) {
     try {
@@ -40,9 +39,8 @@ async function get_wpm(e) {
  * Convert the content of the `wpm_holder` text box and put the result
  * into the `canonical_wpm` text box.
  *
- * @param {Event} e - Event structure (unused)
  */
-function convert(e) {
+function convert() {
     const logger = new Logger();
     try {
         const wpm_holder = document.getElementById('wpm_holder');
@@ -72,13 +70,13 @@ function convert(e) {
  *
  * Event handler to load an manifest from a local file.
  *
- * @param {Event} e
+ * @param {Object} e - DOM Event object
  */
 // eslint-disable-next-line no-unused-vars
 function upload_wpm(e) {
     const file = e.target.files[0];
     const reader = new FileReader();
-    reader.addEventListener('loadend', (ev) => {
+    reader.addEventListener('loadend', () => {
         const wpm_holder = document.getElementById('wpm_holder');
         try {
             JSON.parse(reader.result);
@@ -101,8 +99,8 @@ function upload_wpm(e) {
  * the rules of the WP specification, display that manifest in the text box `wpm_holder`. Then
  * calculate the canonical manifest and display it in `canonical_wpm` text box.
  *
+ * @param {Object} e - DOM Event object
  * @async
- * @param {Event} e - Event structure (unused)
  */
 async function get_pep(e) {
     const logger = new Logger();
@@ -129,6 +127,28 @@ async function get_pep(e) {
     }
 }
 
+/**
+ * Save the canonical manifest as a file.
+ *
+ * The trick is to collect the data as a blob, and use the blob's URL with a (hidden) `<a>` element
+ * with the `download` attribute set.
+ *
+ */
+function save() {
+    const canonical_wpm = document.getElementById('canonical_wpm').value;
+    if (canonical_wpm && canonical_wpm !== '') {
+        // Get hold of the content
+        const mBlob = new Blob([canonical_wpm], { type: 'application/ld+json' });
+        const mURI = URL.createObjectURL(mBlob);
+
+        const download = document.getElementById('download');
+        download.href = mURI;
+        download.download = 'Canonical_Manifest.jsonld';
+        download.click();
+    }
+}
+
+
 // Just a small goody for the home page...
 // eslint-disable-next-line no-unused-vars
 function printDate() {
@@ -151,11 +171,12 @@ function printDate() {
     return textout;
 }
 
-window.addEventListener('load', (e) => {
-    // document.getElementById('fetch_wpm').addEventListener('click', get_wpm);
+
+window.addEventListener('load', () => {
+    document.getElementById('date').textContent = printDate();
     document.getElementById('wpm_url').addEventListener('change', get_wpm);
     document.getElementById('pep_url').addEventListener('change', get_pep);
     document.getElementById('canonicalize').addEventListener('click', convert);
     document.getElementById('upload_wpm').addEventListener('change', upload_wpm);
-    document.getElementById('date').textContent = printDate();
+    document.getElementById('save').addEventListener('click', save);
 });
