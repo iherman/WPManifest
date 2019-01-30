@@ -41,3 +41,6 @@ rules: # see https://eslint.org/docs/rules/
     no-use-before-define: off
     prefer-template: off
     no-else-return: off
+    object-curly-newline:
+        - error
+        - multiline : true

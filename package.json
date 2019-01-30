@@ -1,12 +1,13 @@
 {
   "name": "wp-manifest",
   "version": "1.0.0",
-  "description": "Testing the manifest lifecycle algorithm for the WP draft",
+  "description": "Testing the manifest life cycle algorithm for the WP draft",
   "main": "main.js",
   "scripts": {
     "test": "node main.js",
     "lint": "eslint main.js lib/",
-    "lint-fix": "eslint --fix main.js lib/"
+    "lint-fix": "eslint --fix main.js lib/",
+    "build-web": "browserify webview/lib/main.js > webview/js/wpm.js && terser webview/js/wpm.js > webview/js/wpm.min.js"
   },
   "keywords": [
     "WP",
@@ -29,8 +30,11 @@
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "eslint": "^5.2.0",
+    "browserify": "^16.2.3",
+    "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-plugin-import": "^2.13.0"
+    "eslint-plugin-import": "^2.13.0",
+    "http-server": "^0.11.1",
+    "terser": "^3.14.1"
   }
 }
