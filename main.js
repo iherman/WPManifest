@@ -2,10 +2,10 @@
 
 'use strict';
 
-const url            = require('url');
-const path           = require('path');
-const { fetch_html } = require('./lib/utils');
-const { get_manifest }    = require('./lib/process');
+const url              = require('url');
+const path             = require('path');
+const { fetch_html }   = require('./lib/utils');
+const { get_manifest } = require('./lib/process');
 
 /* ------------------------------------------------------------------------------ */
 //                    Local helper to turn local file names into URL-s...
@@ -174,6 +174,10 @@ async function main(base, file, c_or_d) {
         if (c_or_d) {
             if (process.argv[2] === '-c') {
                 console.log(JSON.stringify(canonical_manifest, null, 4));
+            } else if (process.argv[2] === '-cl') {
+                console.log(JSON.stringify(canonical_manifest, null, 4));
+                console.log('---- Errors/warnings: ----');
+                console.log(logger.toString());
             } else if (process.argv[2] === '-d') {
                 console.log(JSON.stringify(wpm, null, 4));
             }
@@ -190,5 +194,5 @@ async function main(base, file, c_or_d) {
 
 // Adding a '-c': print out the canonical manifest only
 // Adding a '-d': print out the full generated Web Publication Manifest object, rather than the printout
-const canonical_or_debug = (process.argv[2] === '-c' || process.argv[2] === '-d');
+const canonical_or_debug = (process.argv[2] === '-c' || process.argv[2] === '-cl' || process.argv[2] === '-d');
 main(process.argv[1], canonical_or_debug ? process.argv[3] : process.argv[2], canonical_or_debug);
