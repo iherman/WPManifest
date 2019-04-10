@@ -127,6 +127,9 @@ function printoutManifest(manifest) {
         if (item.rel !== undefined) {
             pstr += `${sp8}rel:\n${sp12}${item.rel.join('; ')}\n`;
         }
+        if (item.duration !== undefined) {
+            pstr += `${sp8}duration:\n${sp12}${item.duration}\n`;
+        }
         return pstr;
     };
 
