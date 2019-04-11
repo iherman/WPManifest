@@ -127,8 +127,8 @@ function printoutManifest(manifest) {
         if (item.rel !== undefined) {
             pstr += `${sp8}rel:\n${sp12}${item.rel.join('; ')}\n`;
         }
-        if (item.duration !== undefined) {
-            pstr += `${sp8}duration:\n${sp12}${item.duration}\n`;
+        if (item.totalDuration !== undefined) {
+            pstr += `${sp8}duration:\n${sp12}${item.totalDuration}\n`;
         }
         return pstr;
     };
@@ -150,6 +150,7 @@ function printoutManifest(manifest) {
     retval += `Publication identifier:\n    ${manifest.id}\n`;
     retval += `Date Published:\n    ${manifest.datePublished}\n`;
     retval += `Date Modified:\n    ${manifest.dateModified}\n`;
+    retval += `Global duration:\n    ${manifest.globalDuration}\n`;
     retval += `Access Mode:\n    ${manifest.accessMode}\n`;
     retval += `Access Mode Sufficient:\n    ${manifest.accessModeSufficient ? manifest.accessModeSufficient.join('; ') : undefined}\n`;
     retval += `Author(s):\n${pr_persons(manifest.author)}`;
