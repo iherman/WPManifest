@@ -130,6 +130,9 @@ function printoutManifest(manifest) {
         if (item.length !== undefined) {
             pstr += `${sp8}length:\n${sp12}${item.length}\n`;
         }
+        if (item.integrity !== undefined) {
+            pstr += `${sp8}resource integrity:\n${sp12}${item.integrity}\n`;
+        }
         return pstr;
     };
 
