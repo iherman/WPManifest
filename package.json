@@ -22,8 +22,8 @@
   "bin": "./main.js",
   "dependencies": {
     "content-type": "^1.0.4",
+    "iso8601-duration": "^1.2.0",
     "jsdom": "^11.11.0",
-    "moment": "^2.22.2",
     "node-fetch": "^2.1.2",
     "path": "^0.12.7",
     "url": "^0.11.0",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "browserify": "^16.2.3",
-    "eslint": "^5.12.1",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
     "http-server": "^0.11.1",
