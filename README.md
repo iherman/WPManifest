@@ -1,4 +1,9 @@
 
+# THIS IS NOW OUTDATED AND ARCHIVED
+
+The evolution of the Working Group meant that the work has moved to Publication Manifests. See the PubManifest repository for this...
+
+
 # Testing the Web Publication Manifest algorithm details
 
 This is a proof-of-concept implementation, in JavaScript using `node.js`, of the conversion of a [Web Publication Manifest](https://w3c.github.io/wpub/#wp-construction) into an implementation of the [WebIDL interface](https://w3c.github.io/wpub/#webidl). More specifically, The library produces a `WebPublicationManifest` JavaScript class instance whose getter functions implement the attributes defined in WebIDL.
